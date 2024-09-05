@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ping
+  name: ping # 
 spec:
   type: LoadBalancer
   selector:
     app: ping
   ports:
-  - port: 80
+  - port: 80 # liston on port 80, then forward to 9696
     targetPort: 9696

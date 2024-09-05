@@ -28,9 +28,11 @@ docker-compose up
 docker-compose up -d
 docker-compose down
 
+
+10.6
 docker build -t ping:v001 .
 docker run -it --rm -p 9696:9696 ping:v001
-
+curl localhost:9696/ping
 
 kind create cluster
 

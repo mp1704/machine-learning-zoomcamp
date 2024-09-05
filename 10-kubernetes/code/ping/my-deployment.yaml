@@ -1,0 +1,25 @@
+# docker build -t ping:v001 .
+
+apiVersion: apps/v1
+kind: Deployment
+metadata: # ?
+  name: ping-deployment
+spec: #  Specification of the desired behavior of the Deployment.
+  replicas: 1 # Number of desired pods.
+  selector: # Label selector for pods
+    matchLabels: # ?
+      app: ping
+  template: #  Template describes the pods that will be created
+    metadata:
+      labels: # ?
+        app: ping
+    spec: # Specification of the desired behavior of the pod
+      containers: # ?
+      - name: ping-pod
+        image: ping:v001 # ?
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9696 # ?

@@ -1,0 +1,47 @@
+# 6
+```
+docker build -t ping:v001 .
+
+# `minikukbe image load` ? 
+minikube image build -t ping:v001 .
+minikube image ls | grep ping
+k apply -f my-deployment.yaml
+k get all 
+k describe po ping-deployment-7b5d688645-4vv29 | less
+
+# not working
+k port-forward ping-deployment-7b5d688645-4vv29 9696:80
+# Forwarding from 127.0.0.1:9696 -> 80
+# Forwarding from [::1]:9696 -> 80
+
+# this works 
+k port-forward ping-deployment-7b5d688645-4vv29 9696:9696
+curl localhost:9696/ping
+
+==> Use a Non-Privileged Port (Above 1024):
+kubectl port-forward pod/ping-deployment-7b5d688645-4vv29 2000:9696
+curl localhost:2000/ping
+# PONG
+
+```
+
+# 7
+
+```
+cd /code
+minikube image build -t zoomcamp-10-model:xception-v4-001 -f image-model.dockerfile .
+k create ns dev-1
+kubens 
+k get all
+k describe pod/tf-serving-clothing-model-8587f99464-6n6hk
+
+cd /kube-config
+k apply -f model-deployment.yaml
+k apply -f model-service.yaml
+python ../gateway.py # error
+
+# do this
+k port-forward svc/tf-serving-clothing-model 8500:8500 
+python ../gateway.py
+
+```

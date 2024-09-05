@@ -10,6 +10,11 @@ RUN pipenv install --system --deploy
 
 COPY ["gateway.py", "proto.py", "./"]
 
-EXPOSE 9696
+# COPY proto.py /app/
+# COPY gateway.py /app/
+# EXPOSE 9696
 
-ENTRYPOINT ["gunicorn", "--bind=0.0.0.0:9696", "gateway:app"]
+# ENTRYPOINT ["gunicorn", "--bind=0.0.0.0:9696", "gateway:app"]
+
+# mine
+CMD ["python", "gateway.py"]
